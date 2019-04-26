@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<UserDetails,Long> {
     @Query("from UserDetails  u where u.isActive=1")
-    public List<UserDetails> getAllByIsActive();
-    @Query("from UserDetails u where u.email =: email AND u.password =: password AND u.isActive = 1")
-    public UserDetails getLoggedIn(String email,String password);
+    List<UserDetails> getAllByIsActive();
+
+    @Query("from UserDetails u where u.email =?1 AND u.password =?2 AND u.isActive = 1")
+    UserDetails getLoggedIn(String email, String password);
 }

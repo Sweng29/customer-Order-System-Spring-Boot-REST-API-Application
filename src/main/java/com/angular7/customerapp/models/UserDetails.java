@@ -8,7 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "user_details")
@@ -23,7 +22,7 @@ public class UserDetails {
     @Column(unique = true,nullable = false)
     @NotBlank(message = "user name should be unique nad not be null")
     private String userName;
-    @Pattern(regexp = "DD/MM/YYYY",message = "Date of birth should be in DD/MM/YYYY format")
+    //@Pattern(regexp = "DD/MM/YYYY",message = "Date of birth should be in DD/MM/YYYY format")
     private String dateOfBirth;
     @Email(message = "Email address should be unique and not null")
     @Column(nullable = false,unique = true)
