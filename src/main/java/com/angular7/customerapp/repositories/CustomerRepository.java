@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 @Repository
-@CrossOrigin(origins = "*")
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
 
     @Query("from Customer  c where c.isActive = 1")

@@ -3,15 +3,13 @@ package com.angular7.customerapp.controllers;
 import com.angular7.customerapp.models.ResponseEntity;
 import com.angular7.customerapp.models.UserDetails;
 import com.angular7.customerapp.services.UserService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class UserController {
 
     private UserService userService;
