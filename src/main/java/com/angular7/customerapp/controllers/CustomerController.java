@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping(value = "api/customers")
 public class CustomerController {
 
     private CustomerService customerService;
@@ -20,13 +21,13 @@ public class CustomerController {
     public CustomerController(CustomerService customerService)
     {
         this.customerService = customerService;
+        responseEntity = new ResponseEntity();
     }
 
-    @RequestMapping(path = {"/"})
-    public ResponseEntity getAllCustomers()
+    @RequestMapping(path = {"/"}, method = RequestMethod.GET)
+    public ResponseEntity<Customer> getAllCustomers()
     {
         customers = customerService.getAll();
-        responseEntity = new ResponseEntity();
         System.out.println(customers.size());
         if(customers.size()>0)
         {
@@ -37,7 +38,7 @@ public class CustomerController {
         }else {
 
             responseEntity.setStatus("404");
-            responseEntity.setMessage("Resource not found");
+            responseEntity.setMessage("failed");
             responseEntity.setResult(null);
             return responseEntity;
         }
@@ -46,12 +47,54 @@ public class CustomerController {
     @RequestMapping(path = "/",method = RequestMethod.POST)
     public ResponseEntity addCustomer(@RequestBody Customer customer)
     {
-        System.out.println("Adding customer");
-        responseEntity = new ResponseEntity();
-        customerService.saveOrUpdate(customer);
-        responseEntity.setStatus("200");
-        responseEntity.setMessage("Success fully added");
-        responseEntity.setResult(Arrays.asList(customer));
+        if (customer != null) {
+            customer = customerService.saveOrUpdate(customer);
+            responseEntity.setStatus("200");
+            responseEntity.setMessage("success");
+            responseEntity.setResult(customerService.getAll());
+        }
+        responseEntity.setStatus("201");
+        responseEntity.setMessage("failed");
+        responseEntity.setResult(null);
+        return responseEntity;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
+        if (customer != null && customer.getCustomerId() != null) {
+            responseEntity.setStatus("200");
+            responseEntity.setMessage("success");
+            responseEntity.setResult(customerService.getAll());
+        }
+        responseEntity.setStatus("201");
+        responseEntity.setMessage("failed");
+        responseEntity.setResult(null);
+        return responseEntity;
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Customer> deleteCustomer(@RequestParam Long id) {
+        if (id != null && customerService.deleteById(id)) {
+            responseEntity.setStatus("200");
+            responseEntity.setMessage("success");
+            responseEntity.setResult(customerService.getAll());
+        }
+        responseEntity.setStatus("201");
+        responseEntity.setMessage("failed");
+        responseEntity.setResult(null);
+        return responseEntity;
+    }
+
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Customer> getCustomerById(@RequestParam Long id) {
+        if (id != null) {
+            responseEntity.setStatus("200");
+            responseEntity.setMessage("success");
+            responseEntity.setResult(Arrays.asList(customerService.findById(id)));
+        }
+        responseEntity.setStatus("201");
+        responseEntity.setMessage("failed");
+        responseEntity.setResult(null);
         return responseEntity;
     }
 }
