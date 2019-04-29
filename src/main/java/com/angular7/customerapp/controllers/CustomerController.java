@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping(value = "api/customers")
 public class CustomerController {
 
@@ -44,7 +43,7 @@ public class CustomerController {
         }
     }
 
-    @RequestMapping(path = "/",method = RequestMethod.POST)
+    @RequestMapping(path = "/customer", method = RequestMethod.POST)
     public ResponseEntity addCustomer(@RequestBody Customer customer)
     {
         if (customer != null) {
@@ -59,7 +58,7 @@ public class CustomerController {
         return responseEntity;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/customer", method = RequestMethod.PUT)
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
         if (customer != null && customer.getCustomerId() != null) {
             responseEntity.setStatus("200");
@@ -72,7 +71,7 @@ public class CustomerController {
         return responseEntity;
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Customer> deleteCustomer(@RequestParam Long id) {
         if (id != null && customerService.deleteById(id)) {
             responseEntity.setStatus("200");

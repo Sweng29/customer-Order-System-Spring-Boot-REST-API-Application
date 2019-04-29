@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping(value = "api/users")
 public class UserController {
 
@@ -54,7 +53,7 @@ public class UserController {
         return responseEntity;
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity<UserDetails> addUserDetails(@RequestBody UserDetails userDetails) {
         if (userDetails != null) {
             userDetails.setIsActive(1);
@@ -70,7 +69,7 @@ public class UserController {
         return responseEntity;
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/user", method = RequestMethod.PUT)
     public ResponseEntity<UserDetails> updateUserDetails(@RequestBody UserDetails userDetails) {
         if (userDetails != null && userDetails.getUserId() != null) {
             userDetails = userService.saveOrUpdate(userDetails);
@@ -84,7 +83,7 @@ public class UserController {
         return responseEntity;
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<UserDetails> deleteUserDetails(@RequestParam Long id) {
         if (id != null) {
             if (userService.deleteById(id)) {
