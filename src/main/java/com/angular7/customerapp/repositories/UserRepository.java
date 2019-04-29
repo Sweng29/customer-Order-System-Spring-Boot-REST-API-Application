@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<UserDetails,Long> {
     @Query("from UserDetails  u where u.isActive=1")
     List<UserDetails> getAllByIsActive();
 
-    @Query("from UserDetails u where u.email =?1 AND u.password =?2 AND u.isActive = 1")
+    @Query("from UserDetails u where u.emailAddress =?1 AND u.password =?2 AND u.isActive = 1")
     UserDetails getLoggedIn(String email, String password);
 }

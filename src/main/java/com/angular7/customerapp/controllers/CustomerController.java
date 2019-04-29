@@ -27,7 +27,6 @@ public class CustomerController {
     public ResponseEntity<Customer> getAllCustomers()
     {
         customers = customerService.getAll();
-        System.out.println(customers.size());
         if(customers.size()>0)
         {
             responseEntity.setStatus("200");
@@ -36,7 +35,7 @@ public class CustomerController {
             return responseEntity;
         }else {
 
-            responseEntity.setStatus("404");
+            responseEntity.setStatus("201");
             responseEntity.setMessage("failed");
             responseEntity.setResult(null);
             return responseEntity;
@@ -51,6 +50,7 @@ public class CustomerController {
             responseEntity.setStatus("200");
             responseEntity.setMessage("success");
             responseEntity.setResult(customerService.getAll());
+            return responseEntity;
         }
         responseEntity.setStatus("201");
         responseEntity.setMessage("failed");

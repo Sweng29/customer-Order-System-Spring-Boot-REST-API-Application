@@ -1,5 +1,6 @@
 package com.angular7.customerapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-@Table
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,7 +23,14 @@ public class Customer {
     private String dateOfBirth;
     private String address;
     private Integer isActive;
-    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private Set<Order> orders;
+
+    /*    @OneToOne(mappedBy = "customer",fetch = FetchType.LAZY)
+        @JoinColumn(name = "customer_id_column")
+        private UserDetails userDetails;*/
+    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY)
+    private UserDetails userDetails;
 
 }

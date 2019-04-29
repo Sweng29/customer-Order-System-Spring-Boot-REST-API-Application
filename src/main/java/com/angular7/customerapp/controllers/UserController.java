@@ -41,7 +41,7 @@ public class UserController {
     {
         if(userDetails!=null)
         {
-           userDetails = userService.getLoggedIn(userDetails.getEmail(),userDetails.getPassword());
+            userDetails = userService.getLoggedIn(userDetails.getEmailAddress(), userDetails.getPassword());
            responseEntity.setStatus("200");
            responseEntity.setMessage("success");
            responseEntity.setResult(Arrays.asList(userDetails));

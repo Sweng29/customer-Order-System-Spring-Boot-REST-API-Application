@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -24,6 +26,10 @@ public class Item {
     private String expiryDate;
     @NotBlank(message = "Price should not be null")
     private String price;
+    @ManyToOne
+    @JoinColumn(name = "orderDetailId", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private OrderDetails orderDetails;
     @Column(length = 1)
     private Integer isActive;
 }

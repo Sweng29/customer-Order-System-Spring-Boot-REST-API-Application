@@ -26,9 +26,14 @@ public class UserDetails {
     private String dateOfBirth;
     @Email(message = "Email address should be unique and not null")
     @Column(nullable = false,unique = true)
-    private String email;
+    private String emailAddress;
     @NotBlank(message = "Password must not be empty")
     private String password;
+
+    @OneToOne
+    @JoinColumn(name = "customerId")
+    private Customer customer;
+
     @Column(length = 1)
     private Integer isActive;
 }
