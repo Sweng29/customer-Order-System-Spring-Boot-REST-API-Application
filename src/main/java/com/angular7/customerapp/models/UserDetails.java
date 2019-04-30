@@ -29,11 +29,6 @@ public class UserDetails {
     private String emailAddress;
     @NotBlank(message = "Password must not be empty")
     private String password;
-
-    @OneToOne
-    @JoinColumn(name = "customerId")
-    private Customer customer;
-
     @Column(length = 1)
     private Integer isActive;
 }

@@ -25,9 +25,10 @@ public class OrderDetails {
     @JoinColumn(name = "orderId",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order;
-    @OneToMany(mappedBy = "orderDetails", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Item> items;
+    private Set<Product> products;
+    @Column(length = 1)
     private Integer isActive;
 
 }

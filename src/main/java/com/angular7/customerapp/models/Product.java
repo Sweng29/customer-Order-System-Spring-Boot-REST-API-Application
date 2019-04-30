@@ -4,32 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "Items")
+@Table(name = "Products")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Item {
+public class Product {
     @Id
     @GeneratedValue
-    private Long itemId;
-    @NotBlank(message = "Item name should not be null")
-    private String itemName;
+    private Long productId;
+    @NotBlank(message = "Product name should not be null")
+    private String productName;
     private String manufactureDate;
     private String expiryDate;
     @NotBlank(message = "Price should not be null")
     private String price;
-    @ManyToOne
-    @JoinColumn(name = "orderDetailId", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private OrderDetails orderDetails;
     @Column(length = 1)
     private Integer isActive;
 }

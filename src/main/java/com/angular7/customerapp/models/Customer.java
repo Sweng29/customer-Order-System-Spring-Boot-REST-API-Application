@@ -26,11 +26,4 @@ public class Customer {
     @JsonIgnore
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private Set<Order> orders;
-
-    /*    @OneToOne(mappedBy = "customer",fetch = FetchType.LAZY)
-        @JoinColumn(name = "customer_id_column")
-        private UserDetails userDetails;*/
-    @OneToOne(mappedBy = "customer", fetch = FetchType.LAZY)
-    private UserDetails userDetails;
-
 }
