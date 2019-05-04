@@ -3,9 +3,10 @@ package com.angular7.customerapp.services;
 import com.angular7.customerapp.generics.Generic;
 import com.angular7.customerapp.models.UserRole;
 import com.angular7.customerapp.repositories.UserRoleRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserRoleService implements Generic<UserRole> {
 
     private UserRoleRepository userRoleRepository;

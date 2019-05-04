@@ -23,7 +23,7 @@ public class CustomerController {
         responseEntity = new ResponseEntity();
     }
 
-    @RequestMapping(path = {"/"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/",""}, method = RequestMethod.GET)
     public ResponseEntity<Customer> getAllCustomers()
     {
         customers = customerService.getAll();
@@ -42,10 +42,11 @@ public class CustomerController {
         }
     }
 
-    @RequestMapping(path = "/customer", method = RequestMethod.POST)
+    @RequestMapping(path = {"/",""}, method = RequestMethod.POST)
     public ResponseEntity addCustomer(@RequestBody Customer customer)
     {
         if (customer != null) {
+            System.out.println(customer.getCustomerId());
             customer = customerService.saveOrUpdate(customer);
             responseEntity.setStatus("200");
             responseEntity.setMessage("success");
@@ -58,12 +59,14 @@ public class CustomerController {
         return responseEntity;
     }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.PUT)
+    @RequestMapping(value = {"/",""}, method = RequestMethod.PUT)
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
         if (customer != null && customer.getCustomerId() != null) {
+            customerService.saveOrUpdate(customer);
             responseEntity.setStatus("200");
             responseEntity.setMessage("success");
             responseEntity.setResult(customerService.getAll());
+            return responseEntity;
         }
         responseEntity.setStatus("201");
         responseEntity.setMessage("failed");
@@ -72,11 +75,12 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Customer> deleteCustomer(@RequestParam Long id) {
+    public ResponseEntity<Customer> deleteCustomer(@RequestParam("id") Long id) {
         if (id != null && customerService.deleteById(id)) {
             responseEntity.setStatus("200");
             responseEntity.setMessage("success");
             responseEntity.setResult(customerService.getAll());
+            return responseEntity;
         }
         responseEntity.setStatus("201");
         responseEntity.setMessage("failed");
@@ -85,11 +89,12 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Customer> getCustomerById(@RequestParam Long id) {
+    public ResponseEntity<Customer> getCustomerById(@RequestParam(name = "id") Long id) {
         if (id != null) {
             responseEntity.setStatus("200");
             responseEntity.setMessage("success");
             responseEntity.setResult(Arrays.asList(customerService.findById(id)));
+            return responseEntity;
         }
         responseEntity.setStatus("201");
         responseEntity.setMessage("failed");

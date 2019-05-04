@@ -1,40 +1,14 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Customer APP</span>
-    <span class="example-fill-remaining-space"></span>
-    <span class="align-center"></span>
-    <span class="example-spacer"></span>
-    <button mat-button></button>
-    <button mat-button>Contact</button>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form class="example-form">
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
+<div class="container">
+  <div class="row">
+    <form class="form-group">
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <label>Email</label>
+        </div>
+        <div class="col-md-6">
+          <input type="email" class="form-control">
+        </div>
+      </div>
     </form>
-    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="login()" color="primary">Login</button>
-  </mat-card-actions>
-</mat-card>
+  </div>
+</div>

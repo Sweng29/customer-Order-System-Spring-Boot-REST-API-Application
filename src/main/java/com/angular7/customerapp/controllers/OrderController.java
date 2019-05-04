@@ -24,7 +24,7 @@ public class OrderController {
         ordersList = new ArrayList<>();
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/",""}, method = RequestMethod.GET)
     public ResponseEntity<Order> getAllOrders() {
         ordersList = orderService.getAll();
         if (ordersList.size() > 0) {
