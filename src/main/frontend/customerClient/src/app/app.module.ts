@@ -19,6 +19,8 @@ import {MatButtonModule, MatToolbarModule} from '@angular/material';
     BrowserModule,
     AppRoutingModule,
     CustomMaterialModule,
+    HttpModule,
+    FormsModule,
     CommonModule, MatToolbarModule, MatButtonModule
   ],
   providers: [],

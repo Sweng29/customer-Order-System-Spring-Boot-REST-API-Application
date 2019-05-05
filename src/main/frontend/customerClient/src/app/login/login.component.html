@@ -1,14 +1,24 @@
-<div class="container">
+<div class="container login-container">
   <div class="row">
-    <form class="form-group">
-      <div class="col-md-12">
-        <div class="col-md-6">
-          <label>Email</label>
+    <div class="col-md-3"></div>
+    <div class="col-md-6 login-form-2">
+      <h3>WELCOME <b>Please sign in here!</b></h3>
+      <form >
+        <div class="form-group">
+          <input type="email" id="emailAddress" name="emailAddress" ngModel #emailAddress="ngModel" class="form-control" placeholder="Your Email *" value="" required/>
+          <div class="alert alert-danger" *ngIf="!emailAddress.valid">Email address is required.</div>
         </div>
-        <div class="col-md-6">
-          <input type="email" class="form-control">
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Your Password *" value="" />
         </div>
-      </div>
-    </form>
+        <div class="form-group">
+          <input type="submit" class="btnSubmit" value="Login" />
+        </div>
+        <div class="form-group">
+          <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3"></div>
   </div>
 </div>
